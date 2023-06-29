@@ -1,9 +1,1088 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>hello</title>
-    </head>
-    <body>
-        <h1>hello</h1>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+        Swipper Tags
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!--
+        fonts awesome
+    -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--
+        css
+    -->
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <!--
+        custom js
+    -->
+
+    <link rel="shortcut icon" href="img/cooking.png">  
+    
+   <style>
+
+   
+
+    .app{
+        position: relative;
+        top:0px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 60%;
+        max-width: 1550px;
+        background: #fff;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .app .screen {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main-screen {
+        overflow-y: auto;
+    }
+
+    .main-screen .logo{
+        padding: 20px;
+        text-align: center;
+        color: #161515;
+        font-size: 18px;
+        background: #f6943d;
+        border-bottom: 1px solid #4f2510
+    }
+
+    .main-screen .catagories {
+        padding: 15px 10px 10px;
+        display: grid;
+        grid-auto-flow: column;
+        overflow-y: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .main-screen .catagories > div {
+        background: #104526;
+        color: #fff;
+
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .main-screen .catagories > div.active{
+        background: #198d49;
+        color: #fff;
+    }
+
+    .main-screen .catagories::-webkit-scrollbar{
+        display: inline;
+        background: rgb(208, 205, 205); 
+        width: 5em;
+        cursor: pointer !important;
+    }
+    .main-screen .catagories::-webkit-scrollbar-thumb:hover {
+    background: #7f7b7b;
+    }
+   
+
+    .main-screen .recipe-list{
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .main-screen .recipe-list > .item{
+        border: 1px solid #5d5f60;
+        width: calc(calc(60%/2) - 5px);
+        border-radius: 0px;
+    }
+
+
+    .main-screen .recipe-list > .item .thumbnail img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .main-screen .recipe-list > .item .details h2{
+        color: #090909;
+        font-size: 16px;
+    }
+
+
+.recipe-screen {
+    overflow: hidden;
+}
+
+.recipe-screen .back-btn{
+    position: relative;
+    top: 0;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    background: orangered;
+    color: #fff;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    z-index: 2;
+
+}
+
+
+.recipe-screen .thumbnail {
+   position: inherit; 
+   top: 0px;
+   left: 0px;
+   width: 100%;
+}
+
+.recipe-screen .thumbnail img{
+    width: 40%;
+    height: 30%;
+    border: 1;
+    border-radius: 50%;
+    justify-content: center;
+    margin-left: 30%;
+    box-shadow: 1px 1px;
+    
+}
+.recipe-screen .details{
+    position: relative;
+    bottom: 0px;
+    left: 10px;
+    width: 100%;
+    height: calc(calc(100%/2) + 20px);
+    padding: 20px;
+    overflow-y: scroll;
+    font-size: 14px;
+    border-radius: 25px 25px 0px 0px;
+    background: #d7ecdc;
+    justify-content: center;
+    align-items: center;
+     
+}
+
+.recipe-screen .details h2{
+    font-size: 20px;
+    color: #104526;
+    padding: 10px 0px;
+    text-align: center;
+    
+}
+
+.recipe-screen .details > div{
+    margin: 10px 0px;
+}
+
+.recipe-screen .details > div ol,
+.recipe-screen .details > div ul{
+    padding: 10px 20px;
+    align-items: center;
+
+}
+
+.vid {
+    padding: 10px;
+    background: red;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 20%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    margin-left: 40%;
+    cursor: pointer;
+}
+
+.vid a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+
+ .pr a {
+    padding: 10px;
+    background: #0e8225;
+    font-size: 13px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 20%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    margin-left: 40%;
+    
+ }
+
+ @media print{
+    img {
+         max-width : 300px;
+         height : auto;
+         align-items: center;
+         justify-content: center;
+         margin-left: 30%;
+         border-radius: 50%;
+         margin-bottom: 20px;
+         margin-top: 20px;
+    }
+
+    h2{
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    h4{
+        font-size: 15px;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    ul{
+        list-style: circle;
+        margin-top: 5px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    ol{
+        margin-top: 3px;
+        font-size: 12px;
+    }
+ }
+/* @media print{
+    /* body *{
+        display: none;
+    } 
+
+    .screen .recipe-screen, .screen .recipe-screen *{
+        display: block;
+    }
+} */
+
+
+ 
+   </style>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Food Treep - Cooking made easy for you.</title>
+</head>
+
+<body>
+    <!--     Header   -->
+
+    <header>
+     <a href="index.html" class="logo"><img src="img/logo6.png"    alt="logo"></i> </a>
+   
+    <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="searchRecipe.html">Recipes</a>
+        <a href="fav.html">Favorites</a>
+        <a href="suggestion.html">Meal Suggestion</a>
+        <a href="ktool.html">Kitchen Tool</a>
+
+
+    </nav>
+   <div class="icons">
+    <i class="fa fa-bars" id="menu-bars"></i>
+    <a href="searchRecipe.html" class="fa fa-search" id="search-icon"> </a>
+     
+   </div>
+   
+    </header>
+    
+<!-- search form -->
+
+<form action="" id="search-form">
+    <input type="search" name="" placeholder="Look for recipe..." id="search-box">
+    <label for="search-box" class="fa fa-search"></label>
+    <i class="fa fa-times" id="close" ></i>
+</form>
+
+ <section id="searchDiv" class="sDv" style="margin-top: 80px;width: 100vw; height: 100vh; background-image: url('img/newsPage.jpg');background-repeat: no-repeat;background-size: cover; background-position: center;">
+
+    <h1 class="sub-heading " style="width: 50%; font-size: xx-large; margin-left: auto; margin-right: auto; border-radius: .5em; margin-top: 20%; color: rgb(3, 70, 3); background-color: rgb(250, 248, 248,.7);">Welcome to Food Treep Recipe App</h1> 
+     <!-- <p style="width: 45%; height: 1.5em; margin-left: auto; margin-right: auto; border-radius: .5em; margin-top: 20px; font-size: 15px; font-weight: 800; text-transform: none; text-align: center;  background-color: rgb(250, 248, 248,.7)"> Subscribe to our Newsletter and be the first to get our latest updates. </p>  -->
+
+
+     <div class="modal-cont" id="modal-cont">
+        <div class="modal1" id="modal1">
+            <button class="close-btn" id="close11"><i class="fa fa-times"></i></button>
+            <div class="modal-content">
+                <div class="headers">
+                    <h2 class="log">FoodTreep Newsletter</h2>
+                    <p class="tagline">Be the first to get updates from us.</p>
+                    <br>
+                    <p class="errors" id="errors101"></p>
+    
+                </div>
+                 
+                     <label for="toName">What is your name?</label><br>
+                        <input type="text" id="toName" placeholder="Enter your name..">
+                    <br>
+                <label for="toEmail">How can we reach you?</label><br>
+                <input type="text" id="toEmail" placeholder="Enter your email.." style="text-transform: none;"><br>
+                <p class="message" id="message101"></p>
+                <button onclick="sendMail()" class="subs">Subscribe Now</button><br>
+                
+                <br>
+                 
+            </div>
+        </div>
+
+
+
+    
+ <!-- <div class="center" >
+        <button id="show-btn" style="margin-top: 570% ;">Subscribe</button>
+</div>
+<div class="popup" style="margin-top: 4em;">
+    <div class="close-btn">&times;</div>
+    <div class="form1">
+        <h2>Subscribe to Newsletter</h2>
+        <div style="margin-left: 100px;">
+        <div class="iconNew" style=" height: 110px;
+        width: 110px;
+        background: #27ae60;
+        line-height: 110px;
+        border-radius: 50%;
+        font-size: 55px;
+        color: #fff;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        text-align: center;"><i class="far fa-envelope"></i></div>
+        </div>
+
+        <div id="message" style="font-size: 10px; font-weight: 600; color: green; text-align: center;" ></div>
+        <div id="errors" style="font-size: 10px; font-weight: 600; color: red; text-align: center;"></div>
+
+        <div class="form-element">
+            <label for="toName">What is your name?</label>
+            <input type="text" id="toName" placeholder="Enter your name..">
+        </div>
+
+
+        <div class="form-element1">
+            <label for="toEmail">How can we reach you?</label>
+            <input type="text" id="toEmail" placeholder="Enter your email..">
+        </div>
+<br>
+        <div class="form-element">
+            <button onclick="sendMail()">Subscribe Now</button>
+        </div>
+        
+    </div>
+</div> -->
+ </section>  
+
+ 
+
+
+ <section class="home" id="home" style="margin-top: 10em;">
+
+
+
+
+    <div class="swiper home-slider" style="margin-bottom: 7em;" >
+        <div class="swiper-wrapper wrapper">
+            
+            <div class="swiper-slide slide">
+                <div class="content">
+                    <span>FoodTreep Recipe </span>
+                    <h2>The Easiest Way 
+                    To Make Your 
+                    Favorite Meal</h2>
+                    <p>Discover 100+ recipes in your hand with the best recipe.
+                    
+                    With just few clicks, will help you find the easiest way to cook.</p>
+                    <a href="searchRecipe.html" class="btn-view-recipe"> Explore Recipe</a>                      
+                    
+                </div>
+
+                <div class="image">
+                    <img src="img/slide7.jpg" alt="spicy">
+                </div>
+            </div>
+
+
+
+            <div class="swiper-slide slide">
+                <div class="content">
+                    <span> </span>
+                    <h3>Explore the foodie in you.</h3>
+                    <p>Chefs from all over the world shares their own version of food they love to make.
+                      Randomize. Try out some of the recipe and You can make your own version. 
+                    </p>
+                    <a href="suggestion.html" class="btn-view-recipe">Explore Recipe</a>                      
+
+                   <!-- <a href="" class="btn-view-recipe"><i class="fa-solid fa-eye"></i> View recipe</a>   -->                   
+                  <!--  <a href="" class="btn-add-favorites"> 
+                       <i class="fa fa-heart"> </i> Add Favorites
+                        </a>-->
+                </div>
+
+                <div class="image">
+                    <img src="img/slide5.jpg" alt="spicy">
+                </div>
+            </div>
+
+
+            <div class="swiper-slide slide">
+                <div class="content">
+                    <span>  </span>
+                    <h3> Cooking is for the soul</h3>
+                    <p>Learning how to cook is a standout amongst the most critical abilities a man can have. Cook for yourself and figure out how to appreciate sound nourishments that you've constantly abhorred.
+                        Check out our tool that will help you make your cooking cooking easy! 
+                    </p>
+
+                    <a href="ktool.html" class="btn-view-recipe">Explore Recipe</a> 
+                </div>
+
+                <div class="image">
+                    <img src="img/pizza.jpg" alt="spicy">
+                </div>
+            </div>
+
+
+
+
+        </div>
+        
+    <div class="swiper-pagination"></div>
+     
+     
+      <span></span>
+    </div>
+    </div>
+
+    
+    
+    
+    
+
+ </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  Dishes section -->
+<section class="dishes" id="dishes">
+
+
+
+
+    <!--                         NEWS LETTER               -->
+    
+
+
+
+
+
+
+
+
+
+
+ <div style="margin-bottom: 4rem; margin-top: 3rem;">  </div>
+    
+    <h1 class="heading">Find the right Recipe for you.</h1>
+
+
+
+     
+<br><br> 
+
+
+
+
+
+<div class="app">
+    <div class="screen main-screen">
+        <div class="logo">
+             
+        </div>
+
+         
+        <div class="catagories"></div>
+         
+
+        <div class="recipe-list"></div>
+
+    </div>
+
+    <div class="screen recipe-screen hidden">
+        <div class="back-btn">&#10005;</div>
+
+
+    <div id="printM">
+
+    
+
+        <div class="thumbnail">
+             
+            <img>
+        </div>
+        <div class="details">
+            <h2></h2>
+            <div>
+                <h4>Ingredients</h4>
+                <ul></ul>
+            </div>
+            <div>
+                <h4>Instructions</h4>
+                <ol></ol>
+            </div>
+
+
+        </div>
+
+    </div>
+
+        <div class="vid">
+             
+             <a target="_blank" ><i class="fa fa-play" aria-hidden="true"></i>&nbsp; Watch Video</a> 
+             
+            </div>
+            <div class="pr">  <a href="javascript:void(0);" onclick="printPageArea('printM')"> <i class="fa fa-print" aria-hidden="true"></i>&nbsp; Print</a>
+            </div>
+          
+    </div>
+</div>
+
+
+
+<!-- 
+
+        <div class="box-container">    
+            
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="box">
+                <a href="#" class="fa fa-heart"></a>
+                <a href="#" class="fa fa-eye"></a>
+
+                <img src="img/noodle.jpg" alt="">
+
+                <h3>Spicy Noodles</h3>
+                <div class="ratings"> .... </div>
+
+                <span>Asian</span><br>
+                <a href="#" class="btn-add-favorites">View Video</a>
+
+
+            </div>
+
+            <div class="box">
+                <a href="#" class="fa fa-heart"></a>
+                <a href="#" class="fa fa-eye"></a>
+
+                <img src="img/slide5.jpg" alt="">
+
+                <h3>Tomato Pasta</h3>
+                <div class="ratings"> </div>
+
+                <span>Asian</span><br>
+                <a href="#" class="btn-add-favorites">View Video</a>
+
+
+            </div>
+
+
+
+            <div class="box">
+                <a href="#" class="fa fa-heart"></a>
+                <a href="#" class="fa fa-eye"></a>
+
+                <img src="img/sushi2.jpg" alt="">
+
+                <h3>Pizza</h3>
+                <div class="ratings"> .... </div>
+
+                <span>Western</span><br>
+                <a href="#" class="btn-add-favorites">View Video</a>
+
+
+            </div>
+
+
+
+            <div class="box">
+                <a href="#" class="fa fa-heart"></a>
+                <a href="#" class="fa fa-eye"></a>
+
+                <img src="img/sushi.jpg" alt="">
+
+                <h3>Sushi</h3>
+                <div class="ratings"> .... </div>
+
+                <span>Asian</span><br>
+                <a href="#" class="btn-add-favorites">View Video</a>
+
+
+            </div>
+
+
+            <div class="box">
+                <a href="#" class="fa fa-heart"></a>
+                <a href="#" class="fa fa-eye"></a>
+
+                <img src="img/sushi2.jpg" alt="">
+
+                <h3>Pizza</h3>
+                <div class="ratings"> .... </div>
+
+                <span>Western</span><br>
+                <a href="#" class="btn-add-favorites">View Video</a>
+
+
+            </div>
+
+        </div> -->
+
+
+</section>
+
+<br><br><br>
+  
+
+<section class="footer">
+    
+    <div class="rowCol"></div>
+    
+
+     
+    <!-- <div class="news">
+        <label for="toggle" class="cancel-btn"><i class="fas fa-times"></i></label>
+        <div class="iconNew"><i class="far fa-envelope"></i></div>
+        <div class="newContent">
+             <p>Subscribe to our web page and get the latest updates.</p>
+    
+        </div>
+    
+        <form action="#" class="newslet">
+            <div class="field">
+                <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field btn">
+                <input type="submit" value="Subscribe Now">
+            </div>
+        </form>
+    
+        <div class="txt">We do not share your information.</div>
+    </div> -->
+    <div class="nletterform" style=" margin-top: 0;
+    margin-left: 2%;
+    width: auto;
+    padding: 0 15px;
+    text-align: center;
+    margin-bottom: 2%;">
+        <!-- <h2>  Our Newsletter </h2>   <br> <h3 style="font-weight: 400; text-transform: none; margin-top: 0px;">Subscribe to our page.</h3> -->
+           <!-- <input type="text" placeholder=" Enter your name.." class="nameFoot"> -->
+           <input type="text" placeholder=" Enter Your Email.." class="emailFoot" id="emailfooter" style=" padding: 6px;
+           outline: none;
+           border: 2px solid #ccc;
+           background-color: #11522c;
+           color: #ccc;
+           margin-top: 10px;
+           opacity: .5;
+           margin-left: 2px;
+           width: 20%;
+           text-transform: none;">
+           <button onclick="sendMail1()" class="subsNow" ><i class="fa fa-paper-plane"></i></button>
+    
+       </div>
+
+
+
+     
+    <div class="social"> 
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/?lang=en" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </div>
+</div>
+
+
+
+    <ul class="list">
+<li>
+    <a href="about.html">About</a>
+</li>
+
+<li>
+    <a href="contact.html">Contact</a> 
+</li>
+
+<!-- <li>
+     <input type="checkbox" id="toggle" >
+   <label for="toggle"> 
+    <a href="newsletter.html">Newsletter</a>
+ 
+</li> -->
+
+
+<p class="copyright">
+    MP2 Team 3 @2023
+</p>
+
+    </ul>
+
+    
+
+</section>
+
+ <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+ 
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+ 
+ <script src="js/print.js"></script>
+ <script src="js/html2canvas.js"></script>
+
+ <script type="text/javascript"
+ src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+
+    function showModal(){
+        $('#modal-cont').show();
+        // $('html body').css('overflow','hidden');
+
+    }
+
+    function closeModal(){
+        $('#modal-cont').hide();
+    }
+
+    setTimeout(showModal,3000);
+    $('#close11').click(function(){
+        closeModal();
+    })
+});
+
+
+
+ var swiper = new Swiper(".home-slider", {
+    spaceBetween: 30,
+   centeredSlides: true,
+   autoplay: {
+     delay: 7500,
+     disableOnInteraction: false,
+   },
+    pagination: {
+     el: ".swiper-pagination",
+      clickable: true,
+   },
+    loop:true,
+   });
+
+   
+
+
+////////////////////////////         News Letter            /////////////////////////////////////////
+// document.querySelector("#show-btn").addEventListener("click",function(){
+//     document.querySelector(".popup").classList.add("active");
+// });
+
+// document.querySelector(".popup .close-btn").addEventListener("click",function(){
+//     document.querySelector(".popup").classList.remove("active");
+// });
+
+
+
+
+
+(function(){
+      emailjs.init("r6RlKGXtEiKGP5a18");
+   })();
+
+
+   const fname = "FoodTreep Recipe App";
+   const msg1 = "This is an automated email.";
+
+   function sendMail(params) {
+    var tempParams = {
+        from_name:fname,
+        to_name:document.getElementById("toName").value,
+        message:msg1,
+        to_email:document.getElementById("toEmail").value,
+    };
+
+    var fname = document.getElementById('toName').value;
+    var femail = document.getElementById('toEmail').value;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(fname.trim().length!==0 && femail.match(mailformat)){
+        
+        emailjs.send('service_fozmf55','template_8ysf2bk',tempParams)
+             .then(function(res){
+              console.log("success", res.status);
+         
+                //  alert('You have been successfully subscribed!') ;
+         
+        //window.location.reload();
+        // location.reload();
+
+                  document.getElementById('toName').value='';
+                  document.getElementById('toEmail').value='';
+                  document.getElementById('message101').innerText= 'Email sent. Please check your email.';
+                  document.getElementById('errors101').innerText = '';
+    })
+
+
+    }else{
+        document.getElementById('errors101').innerText = 'Please enter a valid information.';
+        document.getElementById('message101').innerText = '';
+    }
+
+
+
+    
+
+    
+   }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   (function(){
+      emailjs.init("r6RlKGXtEiKGP5a18");
+   })();
+
+   const toName1 = "Mr. / Ms.";
+   const fname1 = "FoodTreep Recipe App";
+   const msg11 = "This is an automated email.";
+
+   function sendMail1(params) {
+    var tempParams = {
+        from_name:fname1,
+        to_name:toName1,
+        message:msg1,
+        to_email:document.getElementById("emailfooter").value,
+    };
+
+    var fname = "Mr. / Ms.";
+    var femail = document.getElementById('emailfooter').value;
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if(femail.match(mailformat)){
+        
+        emailjs.send('service_fozmf55','template_8ysf2bk',tempParams)
+             .then(function(res){
+              console.log("success", res.status);
+         
+                //  alert('You have been successfully subscribed!') ;
+         
+        //window.location.reload();
+        // location.reload();
+
+        swal("Sent!", "Thank you for subscribing. Please check your email.", "success");
+        document.getElementById('emailfooter').value='';
+    })
+
+
+    }else{
+        swal("Sorry!", "You have entered an invalid email.", "error");
+    }
+
+
+
+    
+
+    
+   }
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+let API = "https://www.themealdb.com/api/json/v1/1/";
+
+let app = document.querySelector(".app");
+let screen = {
+    main:app.querySelector(".main-screen"),
+    recipe:app.querySelector(".recipe-screen")
+};
+
+
+(async function(){
+    let res = await fetch(API + "list.php?c=list");
+    let data = await res.json();
+    let catagories = data.meals;
+
+    for(let i=1;i<catagories.length;i++){
+        let div = document.createElement("div");
+        div.innerText = catagories[i].strCategory;
+        div.addEventListener("click",function(){
+            screen.main.querySelector(".catagories .active").classList.remove("active");
+            div.classList.add("active");
+            getRecipesOfCatagory(catagories[i].strCategory);
+        });
+
+        if(i==1){
+            div.classList.add("active");
+            getRecipesOfCatagory(catagories[i].strCategory);
+
+        }
+
+        screen.main.querySelector(".catagories").appendChild(div);
+    }
+})();
+
+
+async function getRecipesOfCatagory(catagory){
+    screen.main.querySelector(".recipe-list").innerHTML = "";
+    try {
+        let res = await fetch(API + "filter.php?c="+catagory);
+        let data = await res.json();
+        let recipes = data.meals;
+
+        for(let i=0;i<recipes.length;i++){
+            let div = document.createElement("div");
+            div.classList.add("item");
+            div.addEventListener("click", function(){
+                showFullRecipe(recipes[i].idMeal);
+
+            });
+            div.innerHTML = `
+                <div class="thumbnail">
+                    <img src="${recipes[i].strMealThumb}"/>
+                </div>
+
+                <div class="details" style="text-align:center;">
+                    <h2> ${recipes[i].strMeal}</h2>
+                </div>
+
+               
+            `;
+            screen.main.querySelector(".recipe-list").appendChild(div);
+        }
+    } catch(msg){ }
+}
+
+async function showFullRecipe(recipeId){
+    screen.main.classList.add("hidden");
+    screen.recipe.classList.remove("hidden");
+    screen.recipe.querySelector(".back-btn").addEventListener("click", function(){
+            screen.recipe.classList.add("hidden");
+            screen.main.classList.remove("hidden");
+             screen.recipe.querySelector(".thumbnail img").src = "";
+            screen.recipe.querySelector(".details h2").innerText = "";
+            screen.recipe.querySelector(".details ul").innerHTML = "";
+            screen.recipe.querySelector(".details ol").innerHTML = "";
+    });
+    try{
+        let res = await fetch(API + "lookup.php?i="+recipeId);
+        let data = await res.json();
+        let recipe = data.meals[0];
+
+        
+        screen.recipe.querySelector(".thumbnail img").src = recipe.strMealThumb;
+        screen.recipe.querySelector(".details h2").innerText = recipe.strMeal;
+
+
+        for(let i=1; i<=20; i++){
+            if(recipe["strIngredient"+i].length == 0){
+                break;
+            }
+            let li = document.createElement("li");
+            li.innerText = recipe["strIngredient"+i] + " - " +recipe["strMeasure"+i];
+            screen.recipe.querySelector(".details ul").appendChild(li);
+
+        }
+
+
+            let instructions = recipe.strInstructions.split("\r\n").filter(v => v);
+            for(let i=0; i<instructions.length; i++){
+                let li = document.createElement("li");
+                li.innerText = instructions[i];
+                screen.recipe.querySelector(".details ol").appendChild(li);
+
+            }
+
+            screen.recipe.querySelector(".vid a").href = recipe.strYoutube;
+
+
+    }catch(msg){}
+}
+
+
+
+const printBtn = document.getElementById('print');
+
+printBtn.addEventListener('click',function(){
+    print();
+})
+
+
+</script>
+  <script src="js/script.js"></script>   
+</body>
 </html>
